@@ -18,6 +18,7 @@
     <None Remove="Img\iconopokerxest.jpeg" />
     <None Remove="Img\playerview.jpg" />
     <None Remove="Img\tournamentsview.jpg" />
+    <None Remove="pokerXestDbEntregas.db" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,7 @@
     <Resource Include="Img\iconopokerxest.jpeg" />
     <Resource Include="Img\playerview.jpg" />
     <Resource Include="Img\tournamentsview.jpg" />
+    <Resource Include="pokerXestDbEntregas.db" />
   </ItemGroup>
 
 </Project>

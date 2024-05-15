@@ -43,10 +43,5 @@ namespace PokerXestWPF.Views
             
         }
 
-        private void adminDni_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
     }
 }
