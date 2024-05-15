@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Img\adminview.jpg" />
+    <None Remove="Img\avatar.jpeg" />
+    <None Remove="Img\croupierView.jpg" />
+    <None Remove="Img\fotologin.jpg" />
+    <None Remove="Img\iconoclave.png" />
+    <None Remove="Img\iconologin.png" />
+    <None Remove="Img\iconopokerxest.jpeg" />
+    <None Remove="Img\playerview.jpg" />
+    <None Remove="Img\tournamentsview.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Img\adminview.jpg" />
+    <Resource Include="Img\avatar.jpeg" />
+    <Resource Include="Img\croupierView.jpg" />
+    <Resource Include="Img\fotologin.jpg" />
+    <Resource Include="Img\iconoclave.png" />
+    <Resource Include="Img\iconologin.png" />
+    <Resource Include="Img\iconopokerxest.jpeg" />
+    <Resource Include="Img\playerview.jpg" />
+    <Resource Include="Img\tournamentsview.jpg" />
+  </ItemGroup>
+
+</Project>
