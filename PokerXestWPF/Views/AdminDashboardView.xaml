@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PokerXestWPF.Views" 
-        xmlns:VM="clr-namespace:PokerXestWPF.ViewModels"
+        xmlns:viewModel="clr-namespace:PokerXestWPF.ViewModels"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="AdminDashboardView" Height="700" Width="1300"
@@ -14,8 +14,20 @@
         AllowsTransparency="True">
 
     <Window.DataContext>
-        <VM:AdminDashboardViewModel/>
+        <viewModel:AdminDashboardViewModel/>
     </Window.DataContext>
+    
+    <Window.Resources>
+
+        <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
+            <local:DashboardView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:PlayersViewModel}">
+            <local:PlayersView/>
+        </DataTemplate>
+
+    </Window.Resources>
 
     <Border CornerRadius="10"
             BorderThickness="2">
@@ -64,7 +76,9 @@
                     <!--Botons do menu-->
                     <!--Boton panel control-->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}">
+                                 Tag="{StaticResource color1}"
+                                 IsChecked="True"
+                                 Command="{Binding ShowDashboardViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Panel de control" Style="{StaticResource menuButtonText}"/>
@@ -72,25 +86,26 @@
                     </RadioButton>
                     <!--boton xogadores-->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}">
+                                 Tag="{StaticResource color2}"
+                                 Command="{Binding ShowPlayersViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Xogadores" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-                    <!--Boton torneos-->
+                    <!--Boton repartidores-->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color3}">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                            <fa:IconImage Icon="Diamond" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Repartidores" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-                    <!--boton repartidores-->
+                    <!--boton torneos-->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color4}">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                            <fa:IconImage Icon="Calendar" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Torneos" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
@@ -101,6 +116,16 @@
                             <fa:IconImage Icon="Wallet" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Finanzas" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
+                    </RadioButton>
+                    <!--Boton logout-->
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color6}"
+                                 Margin="0,250,0,0"
+                                 Click="logOut_Click">                        
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="ArrowRightFromBracket" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Cerrar sesión" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>                        
                     </RadioButton>
 
                 </StackPanel>
@@ -172,12 +197,12 @@
                         <StackPanel Grid.Column="0"
                                     Orientation="Horizontal"
                                     VerticalAlignment="Center">
-                            <fa:IconImage Icon="Home"
+                            <fa:IconImage Icon="{Binding Icon}"
                                           Height="20"
                                           Width="20"
                                           Foreground="{StaticResource titleColor2}"
                                           Margin="35,0,10,0"/>
-                            <TextBlock Text="Panel de control"
+                            <TextBlock Text="{Binding Caption}"
                                        Foreground="{StaticResource titleColor2}"
                                        FontSize="16"
                                        FontFamily="Montserrat"
@@ -232,7 +257,7 @@
                     </Grid>
                     
                     <!--Content section-->
-                    <ContentControl Content=""
+                    <ContentControl Content="{Binding CurrentChildView}"
                                     Grid.Row="2"
                                     Margin="25"/>
                 </Grid>

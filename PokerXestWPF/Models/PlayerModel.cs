@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace PokerXestWPF.Models
 {
-    internal class PlayerModel
+    public class PlayerModel
     {
+        public string Dni { get; set; }
+        public string NickName { get; set; }
+        public string Email { get; set; }
+        public int PhoneNumber { get; set; }
     }
 }

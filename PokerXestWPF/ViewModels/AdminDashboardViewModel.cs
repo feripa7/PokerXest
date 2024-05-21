@@ -1,10 +1,13 @@
-﻿using PokerXestWPF.Models;
+﻿using FontAwesome.Sharp;
+using PokerXestWPF.Models;
 using PokerXestWPF.Repositories;
+using PokerXestWPF.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PokerXestWPF.ViewModels
 {
@@ -13,7 +16,12 @@ namespace PokerXestWPF.ViewModels
         //Campos
         private AdminAccountModel _currentAdminAccount;
         private IAdminRepository adminRepository;
+        private ViewModelBase _currentChildView;
+        private string _caption;
+        private IconChar _icon;
 
+
+        //Propiedades
         public AdminAccountModel CurrentAdminAccount
         {
             get
@@ -28,11 +36,80 @@ namespace PokerXestWPF.ViewModels
 
         }
 
+        public ViewModelBase CurrentChildView 
+        { 
+            get 
+            {
+                return _currentChildView; 
+            }
+            set 
+            { 
+                _currentChildView = value;
+                OnPropertyChanged(nameof(CurrentChildView));
+            }
+        }
+        public string Caption {  
+            get 
+            { 
+                return _caption; 
+            }
+            set
+            {
+                _caption = value; 
+                OnPropertyChanged(nameof(Caption));
+            }
+        } 
+        public IconChar Icon { 
+            get 
+            {
+                return _icon; 
+            }
+            set 
+            { 
+                _icon = value; 
+                OnPropertyChanged(nameof(Icon));
+            }
+        }
+
+        //Comandos
+        public ICommand ShowDashboardViewCommand { get; }
+        public ICommand ShowPlayersViewCommand { get; }
+        public ICommand LogOutCommand { get; }
+
+       
+
         public AdminDashboardViewModel()
         {
             adminRepository = new AdminRepository();
             CurrentAdminAccount = new AdminAccountModel();
+
+            //Inicializamos comandos
+            ShowDashboardViewCommand = new ViewModelCommand(ExecuteShowDashboardViewCommand);
+            ShowPlayersViewCommand = new ViewModelCommand(ExecuteShowPlayersViewCommand);
+
+            //Vista por defecto
+            ExecuteShowDashboardViewCommand(null);
+
             LoadCurrentAdminData();
+        }
+
+        private void ExecuteShowPlayersViewCommand(object obj)
+        {
+            CurrentChildView = new PlayersViewModel();
+            Caption = "Xogadores";
+            Icon = IconChar.UserGroup;
+        }
+
+        private void ExecuteShowDashboardViewCommand(object obj)
+        {
+            CurrentChildView = new DashboardViewModel();
+            Caption = "Panel de control";
+            Icon = IconChar.House;
+        }
+
+        private void ExecuteLogOutCommand(object obj) 
+        {
+            CurrentChildView = new LoginViewModel();        
         }
 
         private void LoadCurrentAdminData()

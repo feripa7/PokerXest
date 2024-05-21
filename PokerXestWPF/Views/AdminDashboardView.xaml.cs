@@ -60,9 +60,11 @@ namespace PokerXestWPF.Views
            else this.WindowState = WindowState.Normal;  
         }
 
-        private void pnlControlBar_MouseEnter_1(object sender, MouseEventArgs e)
+        private void logOut_Click(object sender, RoutedEventArgs e)
         {
-
+            LoginView loginView = new LoginView();
+            loginView.Show();
+            this.Close();
         }
     }
 }
