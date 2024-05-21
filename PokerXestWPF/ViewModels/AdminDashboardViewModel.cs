@@ -74,6 +74,9 @@ namespace PokerXestWPF.ViewModels
         //Comandos
         public ICommand ShowDashboardViewCommand { get; }
         public ICommand ShowPlayersViewCommand { get; }
+        public ICommand ShowDealersViewCommand { get; }
+        public ICommand ShowFinancialsViewCommand { get; }
+        public ICommand ShowTournamentsViewCommand { get; }
         public ICommand LogOutCommand { get; }
 
        
@@ -86,11 +89,35 @@ namespace PokerXestWPF.ViewModels
             //Inicializamos comandos
             ShowDashboardViewCommand = new ViewModelCommand(ExecuteShowDashboardViewCommand);
             ShowPlayersViewCommand = new ViewModelCommand(ExecuteShowPlayersViewCommand);
+            ShowDealersViewCommand = new ViewModelCommand(ExecuteShowDealersViewCommand);
+            ShowFinancialsViewCommand = new ViewModelCommand(ExecuteShowFinancialsViewCommand);
+            ShowTournamentsViewCommand = new ViewModelCommand(ExecuteShowTournamentsViewCommand);
 
             //Vista por defecto
             ExecuteShowDashboardViewCommand(null);
 
             LoadCurrentAdminData();
+        }
+
+        private void ExecuteShowTournamentsViewCommand(object obj)
+        {
+            CurrentChildView = new TournamentsViewModel();
+            Caption = "Torneos";
+            Icon = IconChar.UserGroup;
+        }
+
+        private void ExecuteShowFinancialsViewCommand(object obj)
+        {
+            CurrentChildView = new FinancialsViewModel();
+            Caption = "Finanzas";
+            Icon = IconChar.UserGroup;
+        }
+
+        private void ExecuteShowDealersViewCommand(object obj)
+        {
+            CurrentChildView = new DealersViewModel();
+            Caption = "Repartidores";
+            Icon = IconChar.UserGroup;
         }
 
         private void ExecuteShowPlayersViewCommand(object obj)

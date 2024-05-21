@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokerXestWPF.Models
+namespace PokerXestWPF.ViewModels
 {
-    public class TournamentModel
+    public class FinancialsViewModel
     {
     }
 }

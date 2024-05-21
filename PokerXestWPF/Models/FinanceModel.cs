@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokerXestWPF.Models
 {
-    public class TournamentModel
+    public class FinanceModel
     {
     }
 }
