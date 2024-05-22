@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokerXestWPF.ViewModels
 {
-    public class TournamentsViewModel
+    public class TournamentsViewModel : ViewModelBase
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokerXestWPF.ViewModels
 {
-    public class DealersViewModel
+    public class DealersViewModel:ViewModelBase
     {
     }
 }

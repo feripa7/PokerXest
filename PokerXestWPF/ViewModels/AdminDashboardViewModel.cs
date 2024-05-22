@@ -103,21 +103,21 @@ namespace PokerXestWPF.ViewModels
         {
             CurrentChildView = new TournamentsViewModel();
             Caption = "Torneos";
-            Icon = IconChar.UserGroup;
+            Icon = IconChar.Calendar;
         }
 
         private void ExecuteShowFinancialsViewCommand(object obj)
         {
             CurrentChildView = new FinancialsViewModel();
             Caption = "Finanzas";
-            Icon = IconChar.UserGroup;
+            Icon = IconChar.Wallet;
         }
 
         private void ExecuteShowDealersViewCommand(object obj)
         {
             CurrentChildView = new DealersViewModel();
             Caption = "Repartidores";
-            Icon = IconChar.UserGroup;
+            Icon = IconChar.Diamond;
         }
 
         private void ExecuteShowPlayersViewCommand(object obj)

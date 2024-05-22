@@ -27,6 +27,18 @@
             <local:PlayersView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:DealersViewModel}">
+            <local:DealersView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:TournamentsViewModel}">
+            <local:TournamentsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:FinancialsViewModel}">
+            <local:FinanceView/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Border CornerRadius="10"
@@ -95,7 +107,8 @@
                     </RadioButton>
                     <!--Boton repartidores-->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}">
+                                 Tag="{StaticResource color3}"
+                                 Command="{Binding ShowDealersViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Diamond" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Repartidores" Style="{StaticResource menuButtonText}"/>
@@ -103,7 +116,8 @@
                     </RadioButton>
                     <!--boton torneos-->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color4}">
+                                 Tag="{StaticResource color4}"
+                                 Command="{Binding ShowTournamentsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Calendar" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Torneos" Style="{StaticResource menuButtonText}"/>
@@ -111,7 +125,8 @@
                     </RadioButton>
                     <!--boton finanzas-->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color5}">
+                                 Tag="{StaticResource color5}"
+                                 Command="{Binding ShowFinancialsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Wallet" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Finanzas" Style="{StaticResource menuButtonText}"/>
