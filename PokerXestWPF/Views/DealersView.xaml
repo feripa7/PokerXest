@@ -10,7 +10,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -169,5 +170,19 @@
                     HorizontalAlignment="Center">
             </TextBlock>
         </Grid>
+       <!-- <Grid Grid.Row="2">
+
+            <DataGrid Name="Players" 
+                      ItemsSource="{Binding }" 
+                      AutoGenerateColumns="False">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="DNI" Binding="{Dni}"/>
+                </DataGrid.Columns>
+                
+            </DataGrid>
+
+
+        </Grid>-->
     </Grid>
 </UserControl>

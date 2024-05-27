@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokerXestWPF.Models
 {
-    internal interface ITournamentModel
+    public interface ITournamentModel
     {
     }
 }

@@ -49,7 +49,7 @@
                     Foreground="White"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Left"
-                    Width="120">                                      
+                    Width="120">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
@@ -67,9 +67,9 @@
                         </Setter>
                     </Style>
                 </Button.Style>
-                
+
             </Button>
-            
+
             <!--Crear xogador-->
 
             <Button Grid.Column="2"
@@ -108,66 +108,18 @@
 
         </Grid>
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="70"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0"
-                       Text="DNI"
-                       FontFamily="Montserrat"
-                       FontSize="15"
-                       Foreground="White"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="1"
-                       Text="Alcume"
-                       FontFamily="Montserrat"
-                       FontSize="15"
-                       Foreground="White"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="2"
-                        Text="Número de teléfono"
-                        FontFamily="Montserrat"
-                        FontSize="15"
-                        Foreground="White"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="3"
-                        Text="Email"
-                        FontFamily="Montserrat"
-                        FontSize="15"
-                        Foreground="White"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="4"
-                        Text="Modificar"
-                        FontFamily="Montserrat"
-                        FontSize="15"
-                        Foreground="White"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="5"
-                        Text="Eliminar"
-                        FontFamily="Montserrat"
-                        FontSize="15"
-                        Foreground="White"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-            </TextBlock>
+
+            <DataGrid Name="PlayersDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="DNI" Binding="{Binding Dni}"/>
+                    <DataGridTextColumn Header="Alcume" Binding="{Binding NickName}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="Data de nacemento" Binding="{Binding Age}"/>
+                    <DataGridTextColumn Header="Modificar" Binding="{Binding Modify}"/>
+                    <DataGridTextColumn Header="Eliminar" Binding="{Binding Delete}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
         </Grid>
     </Grid>
 </UserControl>
