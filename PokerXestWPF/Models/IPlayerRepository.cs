@@ -15,6 +15,6 @@ namespace PokerXestWPF.Models
         PlayerModel GetByDni(string dni);
         PlayerModel GetByName(string name);
 
-        IEnumerable<PlayerModel> GetByAll();
+        HashSet<PlayerModel> SearchFilter(string dni, string name, string surname);
     }
 }
