@@ -24,5 +24,23 @@ namespace PokerXestWPF.Views
         {
             InitializeComponent();
         }
+
+        public void Crear_Click(object sender, RoutedEventArgs e)
+        {
+            PlayersForm playersForm = new PlayersForm();    
+            playersForm.Show();
+           
+        }
+
+       public void editarButton_Click(object sender, RoutedEventArgs e)
+        {
+            PlayersForm editForm = new PlayersForm();
+            editForm.Show();
+        }
+        public void eliminarBtn_Click(object sender, RoutedEventArgs e) 
+        { 
+            PlayersForm eliminarForm = new PlayersForm();
+            eliminarForm.Show();
+        }
     }
 }

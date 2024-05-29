@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -73,7 +74,6 @@
             <!--Crear xogador-->
 
             <Button Grid.Column="2"
-                    Command="{Binding CreatePlayerCommand}"
                     FontSize="15"
                     FontFamily="Montserrat"
                     Cursor="Hand"
@@ -81,7 +81,8 @@
                     Foreground="White"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Left"
-                    Width="150">
+                    Width="150"
+                    Click="Crear_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:IconImage Icon="Plus" Height="20" Width="20" Foreground="White"/>
                     <TextBlock Text="Crear xogador" Margin="5"/>
@@ -107,7 +108,14 @@
             </Button>
 
         </Grid>
-        <Grid Grid.Row="1">
+        
+            
+        <Button Content="Editar" Grid.Row="1" Height="30" Width="100" Click="editarButton_Click"/>
+        <Button Content="Eliminar" Grid.Row="2" Height="30" Width="100" Click="eliminarBtn_Click"/>
+            
+        
+        <!--#region -->
+        <!--<Grid Grid.Row="1">
 
             <DataGrid Name="PlayersDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
@@ -120,6 +128,7 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-        </Grid>
+        </Grid>-->
+        <!--#endregion-->
     </Grid>
 </UserControl>

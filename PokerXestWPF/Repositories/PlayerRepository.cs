@@ -23,7 +23,7 @@ namespace PokerXestWPF.Repositories
                     command.CommandText = @"
                     INSERT INTO Player (dni, nickName, name, surname, phoneNumber, email, birthdayDate) 
                     VALUES (@dni, @nickName, @name, @surname, @phoneNumber, @email, @birthdayDate)";
-
+                    
                     command.Parameters.Add("@dni", SqliteType.Text).Value = playerModel.Dni;
                     command.Parameters.Add("@nickName", SqliteType.Text).Value = playerModel.NickName;
                     command.Parameters.Add("@name", SqliteType.Text).Value = playerModel.Name;
@@ -31,6 +31,8 @@ namespace PokerXestWPF.Repositories
                     command.Parameters.Add("@phoneNumber", SqliteType.Integer).Value = playerModel.PhoneNumber;
                     command.Parameters.Add("@email", SqliteType.Text).Value = playerModel.Email;
                     command.Parameters.Add("@birthdayDate", SqliteType.Text).Value = playerModel.BirthdayDate;
+
+                    command.ExecuteNonQuery();
 
                 }
             }
