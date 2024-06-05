@@ -14,6 +14,6 @@ namespace PokerXestWPF.Models
         public int PhoneNumber { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public DateOnly BirthdayDate { get; set; }
+        public DateTime BirthdayDate { get; set; }
     }
 }

@@ -15,9 +15,7 @@ using System.Windows.Shapes;
 
 namespace PokerXestWPF.Views
 {
-    /// <summary>
-    /// Lógica de interacción para PlayersView.xaml
-    /// </summary>
+ 
     public partial class PlayersView : UserControl
     {
         public PlayersView()
@@ -34,7 +32,7 @@ namespace PokerXestWPF.Views
 
        public void editarButton_Click(object sender, RoutedEventArgs e)
         {
-            PlayersForm editForm = new PlayersForm();
+            PlayersEditForm editForm = new PlayersEditForm();
             editForm.Show();
         }
         public void eliminarBtn_Click(object sender, RoutedEventArgs e) 

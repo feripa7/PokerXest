@@ -10,11 +10,7 @@ namespace PokerXestWPF.Models
     public interface IAdminRepository
     {
         bool AuthenticateAdmin(NetworkCredential credential);
-        void Add(AdminModel adminModel);
-        void Edit(AdminModel adminModel);
-        void Remove(string dni);
-
         AdminModel GetByDni(string dni);
-        IEnumerable<AdminModel> GetByAll();
+       
     }
 }

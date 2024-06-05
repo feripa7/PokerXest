@@ -40,7 +40,32 @@ namespace PokerXestWPF.Repositories
 
         public void Edit(PlayerModel playerModel)
         {
-            throw new NotImplementedException();
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = @"
+                    INSERT INTO Player (nickName, name, surname, phoneNumber, email, birthdayDate) 
+                    VALUES (@nickName, @name, @surname, @phoneNumber, @email, @birthdayDate)";
+                  
+                    command.Parameters.Add("@nickName", SqliteType.Text).Value = playerModel.NickName;
+                    command.Parameters.Add("@name", SqliteType.Text).Value = playerModel.Name;
+                    command.Parameters.Add("@surname", SqliteType.Text).Value = playerModel.Surname;
+                    command.Parameters.Add("@phoneNumber", SqliteType.Integer).Value = playerModel.PhoneNumber;
+                    command.Parameters.Add("@email", SqliteType.Text).Value = playerModel.Email;
+                    command.Parameters.Add("@birthdayDate", SqliteType.Text).Value = playerModel.BirthdayDate;
+                    if (DniExists("@dni"))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        throw new Exception("DNI no válido");
+                    }
+
+                }
+            }
         }
 
         public HashSet<PlayerModel> SearchFilter(string dni, string name, string surname)
@@ -85,7 +110,7 @@ namespace PokerXestWPF.Repositories
                             Surname = reader["surname"].ToString(),
                             PhoneNumber = Convert.ToInt32(reader["phoneNumber"]),
                             Email = reader["email"].ToString(),
-                            BirthdayDate = DateOnly.Parse(reader["birthdayDate"].ToString())
+                            BirthdayDate = DateTime.Parse(reader["birthdayDate"].ToString())
                         };
                         filteredPlayers.Add(player);
                     }
@@ -118,7 +143,7 @@ namespace PokerXestWPF.Repositories
                             Surname = reader[3].ToString(),
                             PhoneNumber = (int)reader[4],
                             Email = reader[5].ToString(),
-                            BirthdayDate = DateOnly.Parse(reader[6].ToString()),
+                            BirthdayDate = DateTime.Parse(reader[6].ToString()),
                         };
                     }
                 }
@@ -148,7 +173,7 @@ namespace PokerXestWPF.Repositories
                             Surname = reader[3].ToString(),
                             PhoneNumber = (int)reader[4],
                             Email = reader[5].ToString(),
-                            BirthdayDate = DateOnly.Parse(reader[6].ToString()),
+                            BirthdayDate = DateTime.Parse(reader[6].ToString()),
                         };
                     }
                 }
@@ -156,9 +181,68 @@ namespace PokerXestWPF.Repositories
             return player;
         }
 
+        public bool DniExists(string dni)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT COUNT(*) FROM Player WHERE dni = @dni";
+                    command.Parameters.Add("@dni", SqliteType.Text).Value = dni;
+                    var count = (long)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
+        public bool IsValidDNI(string dni)
+        {
+            if (dni.Length != 9) return false;
+            string numbersPart = dni.Substring(0, 8);
+            string letterPart = dni.Substring(8, 1);
+            if (!int.TryParse(numbersPart, out int numbers)) return false;
+            char correctLetter = CalculateDNILetter(numbers);
+            return letterPart[0] == correctLetter;
+        }
+
+        public char CalculateDNILetter(int numbers)
+        {
+            string letters = "TRWAGMYFPDXBNJZSQVHLCKE";
+            return letters[numbers % 23];
+        }
+     
+        public bool IsOver18(DateTime fechaNacimiento)
+        {
+            DateTime fechaActual = DateTime.Now;
+            int edad = fechaActual.Year - fechaNacimiento.Year;
+
+            if (fechaActual.Month < fechaNacimiento.Month || (fechaActual.Month == fechaNacimiento.Month && fechaActual.Day < fechaNacimiento.Day))
+            {
+                edad--;
+            }
+
+            return edad >= 18;
+        }
+
+
         public void Remove(string dni)
         {
-            throw new NotImplementedException();
-        }
+            if (!DniExists(dni))
+            {
+                throw new ArgumentException("El DNI proporcionado no existe en la base de datos.");
+            }
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "DELETE FROM Player WHERE dni = @dni";
+                    command.Parameters.Add("@dni", SqliteType.Text).Value = dni;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }      
     }
 }

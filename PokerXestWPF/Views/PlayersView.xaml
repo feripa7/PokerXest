@@ -114,8 +114,7 @@
         <Button Content="Eliminar" Grid.Row="2" Height="30" Width="100" Click="eliminarBtn_Click"/>
             
         
-        <!--#region -->
-        <!--<Grid Grid.Row="1">
+       <!-- <Grid Grid.Row="1">
 
             <DataGrid Name="PlayersDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
@@ -129,6 +128,6 @@
             </DataGrid>
 
         </Grid>-->
-        <!--#endregion-->
+        
     </Grid>
 </UserControl>

@@ -11,6 +11,9 @@ namespace PokerXestWPF.Models
         void Add(PlayerModel playerModel);
         void Edit(PlayerModel playerModel);
         void Remove(string dni);
+        bool IsValidDNI(string dni);
+        bool IsOver18(DateTime fechaNacimiento);
+        bool DniExists(string dni);
 
         PlayerModel GetByDni(string dni);
         PlayerModel GetByName(string name);

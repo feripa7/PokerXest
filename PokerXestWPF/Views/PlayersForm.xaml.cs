@@ -2,6 +2,7 @@
 using PokerXestWPF.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -28,26 +29,42 @@ namespace PokerXestWPF.Views
         {
             InitializeComponent();
         }
+        private async void minimizeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
 
-        private async void GuardarButton_Click(object sender, RoutedEventArgs e)
+        private async void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private async void saveBtn_Click(object sender, RoutedEventArgs e)
         {
             
                 var player = new PlayerModel()
                 {
-                    Dni = DniTextBox.Text,
-                    NickName = AlcumeTextBox.Text,
-                    Name = NomeTextBox.Text,
-                    Surname = ApelidosTextBox.Text,
-                    PhoneNumber = Convert.ToInt32(TelefonoTextBox.Text),
-                    Email = CorreoTextBox.Text,
-                    BirthdayDate = DateOnly.Parse(DataNacementoTextBox.Text)
+                    Dni = playerDni.Text,
+                    NickName = playerNickname.Text,
+                    Name = playerName.Text,
+                    Surname = playerSurname.Text,
+                    PhoneNumber = Convert.ToInt32(playerPhoneNumber.Text),
+                    Email = playerEmail.Text,
+                    BirthdayDate = DateTime.Parse(playerBirthdayDate.Text)
                 };
             
             var playerRep = new PlayerRepository();
             try
             {
-                playerRep.Add(player);
-                System.Windows.MessageBox.Show("Datos guardados exitosamente.");
+                if(IsValidDNI(player.Dni) && IsOver18(player.BirthdayDate))
+                {
+                    playerRep.Add(player);
+                    System.Windows.MessageBox.Show("Datos guardados exitosamente.");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("DNI incorrecto o menor de edad");
+                }
 
             }
             catch(Exception ex)
@@ -56,10 +73,38 @@ namespace PokerXestWPF.Views
             }
         }
 
-        public void VolverButton_Click(object sender, RoutedEventArgs e)
+
+        public bool IsValidDNI(string dni)
         {
-            AdminDashboardView adminDashboardView = new AdminDashboardView();
-            adminDashboardView.Show();
+            if (dni.Length != 9) return false;
+            string numbersPart = dni.Substring(0, 8);
+            string letterPart = dni.Substring(8, 1);
+            if (!int.TryParse(numbersPart, out int numbers)) return false;
+            char correctLetter = CalculateDNILetter(numbers);
+            return letterPart[0] == correctLetter;
+        }
+
+        public char CalculateDNILetter(int numbers)
+        {
+            string letters = "TRWAGMYFPDXBNJZSQVHLCKE";
+            return letters[numbers % 23];
+        }
+
+        public bool IsOver18(DateTime fechaNacimiento)
+        {
+            DateTime fechaActual = DateTime.Now;
+            int edad = fechaActual.Year - fechaNacimiento.Year;
+
+            if (fechaActual.Month < fechaNacimiento.Month || (fechaActual.Month == fechaNacimiento.Month && fechaActual.Day < fechaNacimiento.Day))
+            {
+                edad--;
+            }
+
+            return edad >= 18;
+        }
+
+        public void backBtn_Click(object sender, RoutedEventArgs e)
+        {        
             this.Close();
         }
     }

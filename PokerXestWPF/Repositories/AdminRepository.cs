@@ -11,10 +11,6 @@ namespace PokerXestWPF.Repositories
 {
     public class AdminRepository : RepositoryBase, IAdminRepository
     {
-        public void Add(AdminModel adminModel)
-        {
-            throw new NotImplementedException();
-        }
 
         public bool AuthenticateAdmin(NetworkCredential credential)
         {
@@ -31,16 +27,6 @@ namespace PokerXestWPF.Repositories
             }
             return validAdmin;
 
-        }
-
-        public void Edit(AdminModel adminModel)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<AdminModel> GetByAll()
-        {
-            throw new NotImplementedException();
         }
 
         public AdminModel GetByDni(string dni)
@@ -71,9 +57,5 @@ namespace PokerXestWPF.Repositories
             return admin;
         }
 
-        public void Remove(string dni)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
