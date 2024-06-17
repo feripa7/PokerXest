@@ -24,5 +24,16 @@ namespace PokerXestWPF.Views
         {
             InitializeComponent();
         }
+
+        private void totalGastosBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void totalIngresosBtn_Click(Object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }

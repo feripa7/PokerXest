@@ -17,26 +17,46 @@ using System.Windows.Shapes;
 
 namespace PokerXestWPF.Views
 {
-    /// <summary>
-    /// Lógica de interacción para PlayersEditForm.xaml
-    /// </summary>
-    public partial class PlayersEditForm : Window
+      public partial class EditPlayerView : Window
     {
-        public PlayersEditForm()
+        public EditPlayerView()
         {
             InitializeComponent();
         }
 
-        private async void minimizeBtn_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+        private void minimizeBtn_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
-        private async void closeBtn_Click(object sender, RoutedEventArgs e)
+        private void backBtn_Click(Object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private async void deleteBtn_Click(object sender, RoutedEventArgs e) 
+        {
+            var playerRep = new PlayerRepository();
+            try
+            {
+                playerRep.Remove(playerDniEdit.Text);
+                System.Windows.MessageBox.Show("Xogador eliminado correctamente");
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show("Error");
+            }
+        }
         private async void saveBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -98,11 +118,6 @@ namespace PokerXestWPF.Views
             }
 
             return edad >= 18;
-        }
-
-        public void backBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

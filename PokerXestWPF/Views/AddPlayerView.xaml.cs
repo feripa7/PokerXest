@@ -4,40 +4,40 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace PokerXestWPF.Views
 {
-    /// <summary>
-    /// Lógica de interacción para PlayersForm.xaml
-    /// </summary>
-    public partial class PlayersForm : Window
+      public partial class AddPlayerView : Window
     {
-        public PlayersForm()
+        public AddPlayerView()
         {
             InitializeComponent();
         }
-        private async void minimizeBtn_Click(object sender, RoutedEventArgs e)
+
+        private void Window_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+        private void minimizeBtn_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
 
-        private async void closeBtn_Click(object sender, RoutedEventArgs e)
+        private void backBtn_Click(Object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
 
         private async void saveBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -76,18 +76,8 @@ namespace PokerXestWPF.Views
 
         public bool IsValidDNI(string dni)
         {
-            if (dni.Length != 9) return false;
-            string numbersPart = dni.Substring(0, 8);
-            string letterPart = dni.Substring(8, 1);
-            if (!int.TryParse(numbersPart, out int numbers)) return false;
-            char correctLetter = CalculateDNILetter(numbers);
-            return letterPart[0] == correctLetter;
-        }
-
-        public char CalculateDNILetter(int numbers)
-        {
-            string letters = "TRWAGMYFPDXBNJZSQVHLCKE";
-            return letters[numbers % 23];
+            Regex dniRegex = new Regex(@"^\d{8}[A-HJ-NP-TV-Z]$");
+            return dniRegex.IsMatch(dni);
         }
 
         public bool IsOver18(DateTime fechaNacimiento)
@@ -103,10 +93,6 @@ namespace PokerXestWPF.Views
             return edad >= 18;
         }
 
-        public void backBtn_Click(object sender, RoutedEventArgs e)
-        {        
-            this.Close();
-        }
     }
 }
     

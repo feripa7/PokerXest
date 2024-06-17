@@ -14,14 +14,10 @@
         AllowsTransparency="True">
 
     <Window.DataContext>
-        <viewModel:AdminDashboardViewModel/>
+        <viewModel:AdminDashboardViewModel/>        
     </Window.DataContext>
     
     <Window.Resources>
-
-        <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
-            <local:DashboardView/>
-        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:PlayersViewModel}">
             <local:PlayersView/>
@@ -35,9 +31,6 @@
             <local:TournamentsView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:FinancialsViewModel}">
-            <local:FinanceView/>
-        </DataTemplate>
 
     </Window.Resources>
 
@@ -87,7 +80,7 @@
                     
                     <!--Botons do menu-->
                     <!--Boton panel control-->
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <!--<RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
                                  IsChecked="True"
                                  Command="{Binding ShowDashboardViewCommand}">
@@ -95,7 +88,7 @@
                             <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Panel de control" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>                        
-                    </RadioButton>
+                    </RadioButton>-->
                     <!--boton xogadores-->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color2}"
@@ -124,14 +117,14 @@
                         </StackPanel>
                     </RadioButton>
                     <!--boton finanzas-->
-                    <RadioButton Style="{StaticResource menuButton}"
+                  <!--  <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color5}"
                                  Command="{Binding ShowFinancialsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Wallet" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Finanzas" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
-                    </RadioButton>
+                    </RadioButton>-->
                     <!--Boton logout-->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color6}"

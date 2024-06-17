@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
@@ -55,15 +56,7 @@ namespace PokerXestWPF.Repositories
                     command.Parameters.Add("@phoneNumber", SqliteType.Integer).Value = playerModel.PhoneNumber;
                     command.Parameters.Add("@email", SqliteType.Text).Value = playerModel.Email;
                     command.Parameters.Add("@birthdayDate", SqliteType.Text).Value = playerModel.BirthdayDate;
-                    if (DniExists("@dni"))
-                    {
-                        command.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        throw new Exception("DNI no válido");
-                    }
-
+                    command.ExecuteNonQuery();
                 }
             }
         }
@@ -119,7 +112,7 @@ namespace PokerXestWPF.Repositories
 
             return filteredPlayers;
         }
-    
+   
 
         public PlayerModel GetByDni(string dni)
         {
@@ -183,27 +176,23 @@ namespace PokerXestWPF.Repositories
 
         public bool DniExists(string dni)
         {
+            bool dniExists;
             using (var connection = GetConnection())
+            using (var command = new SqliteCommand())
             {
                 connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "SELECT COUNT(*) FROM Player WHERE dni = @dni";
-                    command.Parameters.Add("@dni", SqliteType.Text).Value = dni;
-                    var count = (long)command.ExecuteScalar();
-                    return count > 0;
-                }
+                command.Connection = connection;
+                command.CommandText = "select * from [Player] WHERE dni = @dni";
+                command.Parameters.Add("@dni", SqliteType.Text).Value = dni;
+                dniExists = command.ExecuteScalar() == null ? false : true; 
             }
+            return dniExists;
         }
 
         public bool IsValidDNI(string dni)
         {
-            if (dni.Length != 9) return false;
-            string numbersPart = dni.Substring(0, 8);
-            string letterPart = dni.Substring(8, 1);
-            if (!int.TryParse(numbersPart, out int numbers)) return false;
-            char correctLetter = CalculateDNILetter(numbers);
-            return letterPart[0] == correctLetter;
+            Regex dniRegex = new Regex(@"^\d{8}[A-HJ-NP-TV-Z]$");
+            return dniRegex.IsMatch(dni);
         }
 
         public char CalculateDNILetter(int numbers)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PokerXestWPF.Models;
+using PokerXestWPF.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,12 +16,9 @@ using System.Windows.Shapes;
 
 namespace PokerXestWPF.Views
 {
-    /// <summary>
-    /// Lógica de interacción para LoginView.xaml
-    /// </summary>
-    public partial class LoginView : Window
+    public partial class CreateTournamentView : Window
     {
-        public LoginView()
+        public CreateTournamentView()
         {
             InitializeComponent();
         }
@@ -35,8 +34,24 @@ namespace PokerXestWPF.Views
         }
         private void closeBtn_Click(object sender, RoutedEventArgs e)
         {
-           Application.Current.Shutdown();
+            Application.Current.Shutdown();
+        }
+        private void backBtn_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
+        private async void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            var tournament = new TournamentModel()
+            {
+                Name = tournamentName.Text,
+                Date = DateTime.Parse(tournamentDate.Text),
+            };
+
+            var tournamentRep = new TournamentRepository();
+           
+        }
     }
 }

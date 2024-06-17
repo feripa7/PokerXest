@@ -15,14 +15,30 @@ using System.Windows.Shapes;
 
 namespace PokerXestWPF.Views
 {
-    /// <summary>
-    /// Lógica de interacción para DealersView.xaml
-    /// </summary>
     public partial class DealersView : UserControl
     {
         public DealersView()
         {
             InitializeComponent();
         }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EditDealerView editDealerView = new EditDealerView();
+            editDealerView.Show();
+        }
+
+        private void addBtn_Click(Object sender, RoutedEventArgs e)
+        {
+            AddDealerView addDealerView = new AddDealerView();
+            addDealerView.Show();
+        }
+
+        private void deleteBtn_Click(Object sender, RoutedEventArgs e)
+        {
+            EditDealerView deleteDealerView = new EditDealerView();
+            deleteDealerView.Show();
+        }
+
     }
 }

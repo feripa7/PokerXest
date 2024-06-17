@@ -94,7 +94,7 @@ namespace PokerXestWPF.ViewModels
             ShowTournamentsViewCommand = new ViewModelCommand(ExecuteShowTournamentsViewCommand);
 
             //Vista por defecto
-            ExecuteShowDashboardViewCommand(null);
+            ExecuteShowPlayersViewCommand(null);
 
             LoadCurrentAdminData();
         }

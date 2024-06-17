@@ -12,6 +12,8 @@ namespace PokerXestWPF.Models
         void Add(DealerModel dealerModel);
         void Edit(DealerModel dealerModel);
         void Remove(string dni);
+        bool DniExists(string dni);
+        bool IsValidDNI(string dni);
 
         DealerModel GetByDni(string dni);
         IEnumerable<DealerModel> GetByAll();

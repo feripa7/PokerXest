@@ -10,58 +10,52 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <Grid Grid.Row="0">
+                          
+                <TextBlock Text="Qué desexa facer?"
+                           Foreground="White"
+                           FontSize="24"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           />
+          
+        </Grid>
+        <!-- #region Botons-->
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="150"/>
+                
             </Grid.ColumnDefinitions>
-
-            <StackPanel Orientation="Horizontal"
-                    VerticalAlignment="Top"
-                    Grid.Column="0">
-
-                <fa:IconImage Icon="Search" Height="20" Width="20" Foreground="{StaticResource plainTextColor3}"/>
-                <TextBox Text="Buscar..."
-                     FontSize="13"
-                     Height="24"
-                     Width="300"
-                     Background="Transparent"
-                     FontWeight="Medium"
-                     FontFamily="Montserrat"
-                     Foreground="{StaticResource plainTextColor3}"
-                     CaretBrush="{StaticResource plainTextColor3}"
-                     BorderBrush="{StaticResource plainTextColor3}"
-                     BorderThickness="0,0,0,1"
-                     VerticalContentAlignment="Center"
-                     Margin="5,5,0,0"/>
-            </StackPanel>
+            <!-- #region Editar xogador -->
             <Button Grid.Column="1"
-                Command="{Binding LoginCommand}"
-                Content="Buscar"
-                FontSize="15"
-                FontFamily="Montserrat"
-                Cursor="Hand"
-                BorderThickness="0"
-                Foreground="White"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Width="120">
+                    FontSize="15"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="200"
+                    Click="editBtn_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:IconImage Icon="Pencil" Height="20" Width="20" Foreground="White"/>
+                    <TextBlock Text="Editar repartidor" Margin="5"/>
+                </StackPanel>
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="#773DFF"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Height="30"
-                                        CornerRadius="15"
-                                        Background="{TemplateBinding Background}">
+                                    <Border Height="100"
+                    CornerRadius="50"
+                    Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
+                                  HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -70,19 +64,19 @@
                 </Button.Style>
 
             </Button>
+            <!--#endregion Editar xogador-->
+            <!--#region engadirxogador-->
 
-            <!--Engadir repartidor-->
-
-            <Button Grid.Column="2"
-                Command="{Binding AddDealerCommand}"
-                FontSize="15"
-                FontFamily="Montserrat"
-                Cursor="Hand"
-                BorderThickness="0"
-                Foreground="White"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Width="150">
+            <Button Grid.Column="0"
+                    FontSize="15"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="200"
+                    Click="addBtn_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:IconImage Icon="Plus" Height="20" Width="20" Foreground="White"/>
                     <TextBlock Text="Engadir repartidor" Margin="5"/>
@@ -93,11 +87,11 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Height="30"
-                            CornerRadius="15"
-                            Background="{TemplateBinding Background}">
+                                    <Border Height="100"
+                                CornerRadius="50"
+                                Background="{TemplateBinding Background}">
                                         <ContentPresenter VerticalAlignment="Center"
-                                          HorizontalAlignment="Center"/>
+                                              HorizontalAlignment="Center"/>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>
@@ -106,83 +100,51 @@
                 </Button.Style>
 
             </Button>
+            <!--#endregion engadirxogador-->
+
 
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="70"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0"
-                   Text="DNI"
-                   FontFamily="Montserrat"
-                   FontSize="15"
-                   Foreground="White"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="1"
-                   Text="Nome completo"
-                   FontFamily="Montserrat"
-                   FontSize="15"
-                   Foreground="White"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="2"
-                    Text="Número de teléfono"
-                    FontFamily="Montserrat"
+        <Grid Grid.Row="2">
+            
+            
+            <!--#region eliminarxogador-->
+
+            <Button Grid.Column="1"
                     FontSize="15"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    BorderThickness="0"
                     Foreground="White"
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="3"
-                    Text="Email"
-                    FontFamily="Montserrat"
-                    FontSize="15"
-                    Foreground="White"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="4"
-                    Text="Modificar"
-                    FontFamily="Montserrat"
-                    FontSize="15"
-                    Foreground="White"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            </TextBlock>
-            <TextBlock Grid.Row="0" Grid.Column="5"
-                    Text="Eliminar"
-                    FontFamily="Montserrat"
-                    FontSize="15"
-                    Foreground="White"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            </TextBlock>
+                    HorizontalAlignment="Center"
+                    Width="200"
+                    Click="deleteBtn_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:IconImage Icon="Trash" Height="20" Width="20" Foreground="White"/>
+                    <TextBlock Text="Eliminar repartidor" Margin="5"/>
+                </StackPanel>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#773DFF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="100"
+                                CornerRadius="50"
+                                Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+            <!--#endregion eliminarxogador-->
+
         </Grid>
-       <!-- <Grid Grid.Row="2">
-
-            <DataGrid Name="Players" 
-                      ItemsSource="{Binding }" 
-                      AutoGenerateColumns="False">
-
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="DNI" Binding="{Dni}"/>
-                </DataGrid.Columns>
-                
-            </DataGrid>
-
-
-        </Grid>-->
+        <!-- #endregion Botons-->
     </Grid>
 </UserControl>

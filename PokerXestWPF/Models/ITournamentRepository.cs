@@ -10,10 +10,10 @@ namespace PokerXestWPF.Models
     {
         void Add(TournamentModel tournamentModel);
         void Edit(TournamentModel tournamentModel);
-        void Remove(string dni);
+        void Remove(int id);
         void PlayerLog(string playerDni, int tournamentId);
         void DealerParticipation(string dealerDni, int tournamentId);
-        TournamentModel GetByDni(string dni);
+        TournamentModel GetByDni(int id);
         IEnumerable<TournamentModel> GetByAll();
     }
 }

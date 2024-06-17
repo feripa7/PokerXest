@@ -4,9 +4,144 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PokerXestWPF.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+
+            <TextBlock Text="Qué desexa facer?"
+                    Foreground="White"
+                    FontSize="24"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    />
+
+        </Grid>
+        <!-- #region Botons-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <!-- #region Editar xogador -->
+            <Button Grid.Column="1"
+             FontSize="15"
+             FontFamily="Montserrat"
+             Cursor="Hand"
+             BorderThickness="0"
+             Foreground="White"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Center"
+             Width="200"
+             Command="{Binding }">
+                <StackPanel Orientation="Horizontal">
+                    <fa:IconImage Icon="Diamond" Height="20" Width="20" Foreground="White"/>
+                    <TextBlock Text="Consultar repartidores" Margin="5"/>
+                </StackPanel>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#773DFF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="100"
+             CornerRadius="50"
+             Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+            <!--#endregion Editar xogador-->
+            <!--#region engadirxogador-->
+
+            <Button Grid.Column="0"
+             FontSize="15"
+             FontFamily="Montserrat"
+             Cursor="Hand"
+             BorderThickness="0"
+             Foreground="White"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Center"
+             Width="200"
+             Command="{Binding }">
+                <StackPanel Orientation="Horizontal">
+                    <fa:IconImage Icon="UserGroup" Height="20" Width="20" Foreground="White"/>
+                    <TextBlock Text="Consultar xogadores" Margin="5"/>
+                </StackPanel>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#773DFF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="100"
+                         CornerRadius="50"
+                         Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+            <!--#endregion engadirxogador-->
+
+
+        </Grid>
+        <Grid Grid.Row="2">
+
+            <!-- #region buscar xogador -->
+            <Button Grid.Column="0"
+             FontSize="15"
+             FontFamily="Montserrat"
+             Cursor="Hand"
+             BorderThickness="0"
+             Foreground="White"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Center"
+             Width="200"
+             Command="{Binding }">
+                <StackPanel Orientation="Horizontal">
+                    <fa:IconImage Icon="Calendar" Height="20" Width="20" Foreground="White"/>
+                    <TextBlock Text="Consultar torneos" Margin="5"/>
+                </StackPanel>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#773DFF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Height="100"
+     CornerRadius="50"
+     Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+            <!--#endregion buscar xogador-->
+        </Grid>
+        <!-- #endregion Botons-->
     </Grid>
 </UserControl>
